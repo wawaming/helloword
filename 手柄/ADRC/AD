@@ -1,0 +1,43 @@
+#include "includes.h"
+
+
+
+ typedef struct {
+	/*****************跟踪微分器参数**********************/
+  float r;//快速因子 时间尺度
+	float h;//滤波因子 积分时间
+	float n;
+  float h0;//h0=n*h；
+	
+	float x1;//跟踪微分器跟踪信号
+	float x2;//跟踪微分器微分跟踪信号
+	float fh;
+/********************非线性组合参数*********************/
+	float b1;
+	float theta;
+	float b2;
+	float alphal;
+	
+/**********************输出信号************************/
+  float u0;	
+	float e0;
+	float e1;
+	float e2;
+	
+}adrc_init;
+
+
+int Sign(float input);
+int fsg(float a,float b);
+float Nolinear_conbination(adrc_init* ADRC_INIT,float error);
+
+
+
+void ADRC_Init (adrc_init* ADRC_INIT);
+void fhan(adrc_init* ADRC_INIT,float except_data);
+float TD_Nolinear_PID(adrc_init* ADRC_INIT,float execpt,float Real);
+
+
+
+
+
